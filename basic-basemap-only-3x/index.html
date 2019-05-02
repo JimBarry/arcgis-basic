@@ -15,13 +15,19 @@
     <script>
       var map;
 
-      require(["esri/map", "dojo/domReady!"], function(Map) {
-        map = new Map("map", {
+      require(["esri/map", 
+               "dojo/domReady!"
+              ], function(Map) {
+        
+        
+        const map = new Map("map", {
           basemap: "gray",  
           center: [-73.95, 40.73], 
           zoom: 11
         });
-      });
+        
+        
+      }); // end of require
     </script>
   </head>
 
