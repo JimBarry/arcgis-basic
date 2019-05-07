@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Basic Webmap 3x</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/3.28/esri/css/esri.css">
+    <style>
+      html, body, #mapdiv {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+    <script src="https://js.arcgis.com/3.28/"></script>
+    <script>
+      
+      require([
+        //"esri/map", // technically don't even need this module
+        "esri/arcgis/utils",
+        "dojo/domReady!"
+        ], function(arcgisUtils) {
+
+        var map;
+
+        arcgisUtils.createMap("1e03466afd834509a19cb94cf99b83a2", "mapdiv").then(function (response) {
+          map = response.map;
+        });
+          
+      }); // end of require
+    </script>
+  </head>
+
+  <body>
+    <div id="mapdiv"></div>
+  </body>
+</html>
+ 
