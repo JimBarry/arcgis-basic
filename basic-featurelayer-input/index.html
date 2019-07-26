@@ -23,14 +23,16 @@
       require([
         "esri/Map",
         "esri/views/MapView",
-        "esri/layers/FeatureLayer"
-      ], function(Map, MapView, FeatureLayer) {
+        "esri/layers/FeatureLayer",
+        "dojo/dom",
+        "dojo/on",  
+        "dojo/query",
+      ], function(Map, MapView, FeatureLayer, dom, on, query) {
       
         //
         var map = new Map({
           basemap: "gray"
         });
-
         // 
         var mapView = new MapView({
           container: "viewDiv",
@@ -38,19 +40,42 @@
           zoom: 10,
           center: [-73.8, 41] 
         });
-
-        // metro north train lines
-        var featureLayer = new FeatureLayer({
-          url: "https://services1.arcgis.com/1vWZ00DKS28MdI5r/arcgis/rest/services/MNR_TRACKS/FeatureServer"
-        });
-
-        map.add(featureLayer);
         
-      });
+        
+        function addLayer() {
+          
+          // clear all layers out of the map
+          map.removeAll();
+          
+          // get the FeatureLayer URL from the user input text box
+          var urlFL = dom.byId("pathFL").value;
+
+          // create a new FeatureLayer object, then add it to the map
+          var fl = new FeatureLayer({
+            url: urlFL
+          });
+          map.add(fl);
+        
+        }
+
+      // BUTTONS
+          
+        //when the user clicks the Add Layer to Map button, add the layer to the map
+        mapView.when(function() {
+          on(dom.byId("btnAddLayer"), "click", addLayer);
+        });   
+    
+        
+      }); //end of require
     </script>
   </head>
 
   <body>
+    <div><h4>FeatureLayer URL</h4></div>
+    <div><input type="text" id="pathFL" size=100 value="https://services1.arcgis.com/1vWZ00DKS28MdI5r/arcgis/rest/services/MNR_LINES/FeatureServer"></input></div>
+    <div><button class="btn" id="btnAddLayer">Add Layer to Map</button></div>
     <div id="viewDiv"></div>
+      
+    </div>
   </body>
 </html>
