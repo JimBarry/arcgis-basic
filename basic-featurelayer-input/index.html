@@ -63,15 +63,9 @@
 
       // BUTTONS
           
-        //when the user clicks the Add Layer to Map button, add the layer to the map
-        mapView.when(function() {
-          on(dom.byId("btnAddLayer"), "click", addLayer);
-        });   
-        mapView.when(function() {
-          on(dom.byId("btnClearLayers"), "click", clearLayers);
-        });   
+        on(dom.byId("btnAddLayer"), "click", addLayer);
+        on(dom.byId("btnClearLayers"), "click", clearLayers);
     
-        
       }); //end of require
     </script>
   </head>
@@ -84,7 +78,7 @@
     
     <div>
       <input type="text" id="pathFL" size=100 
-        value="https://services1.arcgis.com/1vWZ00DKS28MdI5r/arcgis/rest/services/MNR_LINES/FeatureServer">
+        value="https://services1.arcgis.com/1vWZ00DKS28MdI5r/arcgis/rest/services/MNR_LINES/FeatureServer/0">
       </input>
     </div>
     
