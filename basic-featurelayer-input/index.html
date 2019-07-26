@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>Intro to FeatureLayer - 4.11</title>
+    <title>Interactive FeatureLayer Viewer</title>
 
     <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
     <script src="https://js.arcgis.com/4.11/"></script>
@@ -25,9 +25,8 @@
         "esri/views/MapView",
         "esri/layers/FeatureLayer",
         "dojo/dom",
-        "dojo/on",  
-        "dojo/query",
-      ], function(Map, MapView, FeatureLayer, dom, on, query) {
+        "dojo/on"  
+      ], function(Map, MapView, FeatureLayer, dom, on) {
       
         //
         var map = new Map({
@@ -57,12 +56,19 @@
           map.add(fl);
         
         }
+        
+        function clearLayers() {
+          map.removeAll();
+        }
 
       // BUTTONS
           
         //when the user clicks the Add Layer to Map button, add the layer to the map
         mapView.when(function() {
           on(dom.byId("btnAddLayer"), "click", addLayer);
+        });   
+        mapView.when(function() {
+          on(dom.byId("btnClearLayers"), "click", clearLayers);
         });   
     
         
@@ -71,9 +77,13 @@
   </head>
 
   <body>
-    <div><h4>FeatureLayer URL</h4></div>
+    <div><h4>Interactive FeatureLayer Viewer 4.x</h4></div>
     <div><input type="text" id="pathFL" size=100 value="https://services1.arcgis.com/1vWZ00DKS28MdI5r/arcgis/rest/services/MNR_LINES/FeatureServer"></input></div>
-    <div><button class="btn" id="btnAddLayer">Add Layer to Map</button></div>
+    <div>
+      <button class="btn" id="btnAddLayer">Add Layer to Map</button>
+      <button class="btn" id="btnClearLayers">Clear All Layers</button>
+      
+    </div>
     <div id="viewDiv"></div>
       
     </div>
