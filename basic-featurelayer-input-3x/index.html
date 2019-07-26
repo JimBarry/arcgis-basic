@@ -31,7 +31,8 @@
         var map = new Map("mapDiv", {
           center: [-73.8, 41], 
           zoom: 10,
-          basemap: "gray"
+          basemap: "gray",
+          showLabels: true
         });        
         
         function addLayer() {
@@ -85,7 +86,7 @@
     
     <div>
       <input type="text" id="pathFL" size=100 
-        value="https://services1.arcgis.com/1vWZ00DKS28MdI5r/arcgis/rest/services/MNR_LINES/FeatureServer/0">
+        value="https://services1.arcgis.com/1vWZ00DKS28MdI5r/arcgis/rest/services/MNR_STATIONS_wLabels/FeatureServer/0">
       </input>
     </div>
     
