@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Interactive FeatureLayer Viewer</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/3.29/esri/css/esri.css">
+    <script src="https://js.arcgis.com/3.29/"></script>
+
+    <style>
+      html,
+      body,
+      #mapDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <script>
+      require([
+        "esri/map",
+        "esri/layers/FeatureLayer",
+        "dojo/dom",
+        "dojo/on"  
+      ], function(Map, FeatureLayer, dom, on) {
+      
+        //
+        var map = new Map("mapDiv", {
+          center: [-73.8, 41], 
+          zoom: 10,
+          basemap: "gray"
+        });        
+        
+        function addLayer() {
+          
+          // clear all layers out of the map
+          if (map.graphicsLayerIds.length > 0) {
+            var strLayerId = map.graphicsLayerIds[0];
+            //console.log(strLayerId);
+            map.removeLayer(map.getLayer(strLayerId));
+          }
+          
+          // get the FeatureLayer URL from the user input text box
+          var urlFL = dom.byId("pathFL").value;
+          
+          // if the URL doesn't end with "/0", then add it to the end of the URL
+          var strLastTwoChar = urlFL.slice(-2);
+          if (strLastTwoChar != "/0") {
+            urlFL = urlFL + "/0";
+          }
+
+          // create a new FeatureLayer object, then add it to the map
+          var fl = new FeatureLayer(urlFL);
+          map.addLayer(fl);
+        
+        }
+        
+        function clearLayers() {
+          // clear all layers out of the map
+          if (map.graphicsLayerIds.length > 0) {
+            strLayerId = map.graphicsLayerIds[0];
+            //console.log(strLayerId);
+            map.removeLayer(map.getLayer(strLayerId));
+          }
+
+        }
+
+      // BUTTONS
+        
+        on(dom.byId("btnAddLayer"), "click", addLayer);
+        on(dom.byId("btnClearLayers"), "click", clearLayers);          
+    
+      }); //end of require
+    </script>
+  </head>
+
+  <body>
+    
+    <div>
+      <h4>Interactive FeatureLayer Viewer 3.x</h4>
+    </div>
+    
+    <div>
+      <input type="text" id="pathFL" size=100 
+        value="https://services1.arcgis.com/1vWZ00DKS28MdI5r/arcgis/rest/services/MNR_LINES/FeatureServer/0">
+      </input>
+    </div>
+    
+    <div>
+      <button class="btn" id="btnAddLayer">Add Layer to Map</button>
+      <button class="btn" id="btnClearLayers">Clear All Layers</button>  
+    </div>
+  
+    <div id="mapDiv"></div>
+      
+  </body>
+
+</html>
