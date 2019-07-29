@@ -32,7 +32,7 @@
           center: [-73.8, 41], 
           zoom: 10,
           basemap: "gray",
-          showLabels: true
+          showLabels: true  // IMPORTANT
         });        
         
         function addLayer() {
@@ -49,7 +49,7 @@
           
           // if the URL doesn't end with "/0", then add it to the end of the URL
           var strLastTwoChar = urlFL.slice(-2);
-          if (strLastTwoChar != "/0") {
+          if (strLastTwoChar !== "/0") {
             urlFL = urlFL + "/0";
           }
 
@@ -86,7 +86,7 @@
     
     <div>
       <input type="text" id="pathFL" size=100 
-        value="https://services1.arcgis.com/1vWZ00DKS28MdI5r/arcgis/rest/services/MNR_STATIONS_wLabels/FeatureServer/0">
+        value="https://services1.arcgis.com/1vWZ00DKS28MdI5r/arcgis/rest/services/MNR_STATIONS_wLabels/FeatureServer">
       </input>
     </div>
     
