@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Basic Input Box and Button within ArcGIS</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.11/"></script>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+        "dojo/dom",
+        "dojo/on"  
+      ], function(Map, MapView, dom, on) {
+      
+        //
+        var map = new Map({
+          basemap: "gray"
+        });
+        
+        // 
+        var mapView = new MapView({
+          container: "viewDiv",
+          map: map,
+          zoom: 10,
+          center: [-73.8, 41] 
+        });
+        
+        
+        function callAlert() {
+
+          alert(dom.byId("alert-input").value);
+        
+        }
+
+      // BUTTONS
+          
+        on(dom.byId("btnCallAlert"), "click", callAlert);
+    
+      }); //end of require
+    </script>
+  </head>
+
+  <body>
+    
+    <div>
+      <h4>How to do a text box and button with ArcGIS</h4>
+    </div>
+    
+    <div>
+      <input type="text" id="alert-input" size=25 value="Alert World!">
+      </input>
+    </div>
+    
+    <div>
+      <button class="btn" id="btnCallAlert">Call Alert</button>
+    </div>
+  
+    <div id="viewDiv"></div>
+      
+  </body>
+
+</html>
