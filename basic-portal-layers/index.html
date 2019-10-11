@@ -47,19 +47,20 @@
         //  sublayers: [
         //   {id: 1, visible: true}, 
         //   {id: 0, visible: true}
-        //  ]        
+        //  ] 
+          
         });
         map.add(mil);
         
-        
-        // 5 nyc boros boundary polygons
-        var featureLayer = new FeatureLayer({
-          //url: "http://neenterprise.esri.com/server/rest/services/Hosted/NYC_Boroughs/FeatureServer"
-          //url: "https://neserver.esri.com/server/rest/services/NYC_Boros/FeatureServer"
+        var fl = new FeatureLayer({
+          
+        //  url: "http://neenterprise.esri.com/server/rest/services/Hosted/NYC_Boroughs/FeatureServer"
+        //  url: "https://neserver.esri.com/server/rest/services/NYC_Boros/FeatureServer"
           url: "https://neserver.esri.com/server/rest/services/Bike_Lanes/FeatureServer"
-          //url: "https://neserver.esri.com/server/rest/services/NYC_Bike_Lanes_and_Boros/FeatureServer"
+        //  url: "https://neserver.esri.com/server/rest/services/NYC_Bike_Lanes_and_Boros/FeatureServer"
+          
         });
-        map.add(featureLayer);
+        map.add(fl);
         
       });
     </script>
