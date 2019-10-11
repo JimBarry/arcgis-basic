@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>Portal: FeaturLayer, MapImageLayer</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.13/"></script>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/layers/MapImageLayer",
+        "esri/layers/FeatureLayer"
+      ], function(Map, MapView, MapImageLayer, FeatureLayer) {
+      
+        //
+        var map = new Map({
+          basemap: "gray"
+        });
+        // 
+        var mapView = new MapView({
+          container: "viewDiv",
+          map: map,
+          zoom: 11,
+          center: [-73.95, 40.73] 
+        });
+
+        var mil = new MapImageLayer({
+        
+        //  url: "https://neserver.esri.com/server/rest/services/NYC_Boros/MapServer"
+        //  url: "https://neserver.esri.com/server/rest/services/Bike_Lanes/MapServer"
+          url: "https://neserver.esri.com/server/rest/services/NYC_Bike_Lanes_and_Boros/MapServer",
+          sublayers: [
+           {id: 1, visible: true}, 
+           {id: 0, visible: true}
+          ]        
+        });
+        map.add(mil);
+        
+        
+        // 5 nyc boros boundary polygons
+        var featureLayer = new FeatureLayer({
+          //url: "http://neenterprise.esri.com/server/rest/services/Hosted/NYC_Boroughs/FeatureServer"
+          //url: "https://neserver.esri.com/server/rest/services/NYC_Boros/FeatureServer"
+          //url: "https://neserver.esri.com/server/rest/services/Bike_Lanes/FeatureServer"
+          //url: "https://neserver.esri.com/server/rest/services/NYC_Bike_Lanes_and_Boros/FeatureServer"
+        });
+        //map.add(featureLayer);
+        
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
