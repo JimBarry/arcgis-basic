@@ -1,0 +1,56 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Custom Vector Basemap by PortalID v1</title>
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.13/"></script>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/VectorTileLayer",
+      "esri/Basemap"
+    ], function(Map, MapView, VectorTileLayer, Basemap) {
+      
+      var vtl = new VectorTileLayer({
+        //portalItem: {id: "1a4d6c78e5b3446ca755a73056492ccc"}
+        portalItem: {id: "8105bda0e5eb4c4d9db89ef1d1793f6a"}
+      });
+      
+      var bm = new Basemap({
+        baseLayers: [vtl]
+      });
+      
+      var map = new Map({
+        basemap: bm
+      });
+
+      var mapView = new MapView({
+        container: "viewDiv",
+        map: map,
+        zoom: 10,
+        center: [-73.95, 40.73] 
+      });
+      
+      
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
