@@ -66,8 +66,14 @@
         on(dom.byId("btnAddLayer"), "click", addLayer);
         on(dom.byId("btnClearLayers"), "click", clearLayers);
     
-      }); //end of require
-    </script>
+
+      //lastly
+      mapView.when({
+        //for things you want to do after the map fully loads
+      });  
+      
+    }); //end of require()
+
   </head>
 
   <body>
