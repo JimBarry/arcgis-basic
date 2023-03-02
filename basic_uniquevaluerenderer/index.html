@@ -41,6 +41,9 @@
       });
       
       // render the layers based on unique values
+      //
+      // the name of the field that contains the values for the renderer is called "name"
+      // there are 3 unique values in that field (alpha, beta, gamma), and each has a unique symbol
       const uvrTest = new UniqueValueRenderer({
         field: "name",
         uniqueValueInfos: [
